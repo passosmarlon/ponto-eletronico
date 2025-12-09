@@ -1,4 +1,4 @@
-# ponto-eletronico
+# Ponto-eletronico
 Sistema de Ponto Eletrônico — Construção Civil (EUA)
 
 Projeto desenvolvido para auxiliar empresas de construção civil no controle de presença dos funcionários, com:
@@ -10,7 +10,7 @@ Projeto desenvolvido para auxiliar empresas de construção civil no controle de
 ✔ Painel de funcionários
 ✔ API REST com Spring Boot
 
-🛠 Tecnologias usadas
+ Tecnologias usadas
 
 Java 17
 
