@@ -8,6 +8,7 @@ Projeto desenvolvido para auxiliar empresas de construção civil no controle de
 ✔ Geolocalização enviada ao gestor
 ✔ Pagamento semanal baseado no salário + horas trabalhadas
 ✔ Painel de funcionários
+✔ Geolocalização em tempo real do funcionário
 ✔ API REST com Spring Boot
 
  Tecnologias usadas
@@ -20,11 +21,11 @@ Spring Data JPA
 
 Lombok
 
-PostgreSQL (ou o banco que estiver usando)
+MySQL
 
 Maven
 
-⚙ Funcionalidades
+ Funcionalidades
 
 Criar funcionários
 
@@ -33,5 +34,7 @@ Atualizar e deletar funcionários
 Calcular horas trabalhadas
 
 Registrar ponto (entrada/saída)
+
+Monitorar a localização do funcionário em tempo real
 
 Gerar pagamento semanal automaticamente
