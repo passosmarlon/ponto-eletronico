@@ -19,7 +19,6 @@ public class PointCalculateService {
 
         Duration totalHours = Duration.between(start, end);
 
-
         return totalHours;
     }
 

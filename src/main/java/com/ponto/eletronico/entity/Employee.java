@@ -1,5 +1,6 @@
     package com.ponto.eletronico.entity;
 
+    import com.ponto.eletronico.converter.DurationConverter;
     import jakarta.persistence.*;
     import lombok.AllArgsConstructor;
     import lombok.Getter;
@@ -23,6 +24,7 @@
         private String name;
         private String email;
         private BigDecimal salary;
+        @Convert(converter = DurationConverter.class)
         private Duration hoursWorked = Duration.ZERO;
 
 

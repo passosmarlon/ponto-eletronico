@@ -26,6 +26,7 @@ public class EmployeeService {
         Employee employee = EmployeeMapper.toEntity(data);
         //Employee employee = new Employee(data);
         return employeeRepository.save(employee);
+
     }
 
     public List<EmployeeDTO> getEmployee() {

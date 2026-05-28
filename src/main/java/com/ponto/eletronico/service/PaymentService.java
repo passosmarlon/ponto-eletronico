@@ -41,7 +41,7 @@ public class PaymentService {
         BigDecimal total = salary.multiply(BigDecimal.valueOf(hours));
 
         payment.setTotal(total);
-        payment.setStatus(Status.valueOf("PAID"));
+        payment.setStatus(Status.PAID);
         payment.setDate(LocalDateTime.now());
         payment.setEmployee(employee);
 
