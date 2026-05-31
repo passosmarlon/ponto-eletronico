@@ -73,6 +73,14 @@ public class PointRecordService {
 
     }
 
+
+    public PointRecordDTO getPointRecorId(Long id) {
+        PointRecord pointRecord = pointRecordRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pperating point not found"));
+        return PointRecordMapper.toDTO(pointRecord);
+
+    }
+
     public List<PointRecordDTO> getPointRecord() {
         return pointRecordRepository.findAll()
                 .stream()

@@ -2,7 +2,8 @@ package com.ponto.eletronico.user;
 
 public enum UserRole {
     ADMIN("admin"),
-    USER("user");
+    HR("hr"),
+    EMPLOYEE("employee");
 
     private String role;
 

@@ -5,6 +5,8 @@ import com.ponto.eletronico.entity.Employee;
 import com.ponto.eletronico.mapper.EmployeeMapper;
 import com.ponto.eletronico.repository.EmployeeRepository;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +14,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class EmployeeService {
 
-    @Autowired
     private final EmployeeRepository employeeRepository;
 
-    public EmployeeService(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
 
     @Transactional
     public Employee saveEmployee(EmployeeDTO data) {
@@ -27,6 +26,12 @@ public class EmployeeService {
         //Employee employee = new Employee(data);
         return employeeRepository.save(employee);
 
+    }
+
+    public EmployeeDTO getEmployeeId(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Employee not found"));
+        return EmployeeMapper.toDTO(employee);
     }
 
     public List<EmployeeDTO> getEmployee() {

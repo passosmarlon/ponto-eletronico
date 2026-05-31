@@ -1,5 +1,6 @@
 package com.ponto.eletronico.repository;
 
+import com.ponto.eletronico.dto.PointRecordDTO;
 import com.ponto.eletronico.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
