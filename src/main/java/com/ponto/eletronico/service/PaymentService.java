@@ -8,6 +8,7 @@ import com.ponto.eletronico.mapper.PaymentMapper;
 import com.ponto.eletronico.repository.EmployeeRepository;
 import com.ponto.eletronico.repository.PaymentRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -15,15 +16,11 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Service
+@RequiredArgsConstructor
 public class PaymentService {
 
     private final PaymentRepository paymentRepository;
     private final EmployeeRepository employeeRepository;
-
-    public PaymentService(PaymentRepository paymentRepository, EmployeeRepository employeeRepository) {
-        this.paymentRepository = paymentRepository;
-        this.employeeRepository = employeeRepository;
-    }
 
     @Transactional
     public PaymentDTO salaryPayment(PaymentDTO data) {

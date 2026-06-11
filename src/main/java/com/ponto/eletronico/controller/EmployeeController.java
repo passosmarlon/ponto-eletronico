@@ -2,6 +2,7 @@ package com.ponto.eletronico.controller;
 
 import com.ponto.eletronico.dto.EmployeeDTO;
 import com.ponto.eletronico.service.EmployeeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -10,13 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("employee")
+@RequiredArgsConstructor
 public class EmployeeController {
 
     private final EmployeeService employeeService;
-
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'HR')")
     @PostMapping

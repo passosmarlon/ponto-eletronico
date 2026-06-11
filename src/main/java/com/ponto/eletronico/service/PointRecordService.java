@@ -7,6 +7,7 @@ import com.ponto.eletronico.mapper.PointRecordMapper;
 import com.ponto.eletronico.repository.EmployeeRepository;
 import com.ponto.eletronico.repository.PointRecordRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -15,17 +16,12 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PointRecordService {
 
     private final PointRecordRepository pointRecordRepository;
     private final EmployeeRepository employeeRepository;
     private final PointCalculateService service;
-
-    public PointRecordService(PointRecordRepository pointRecordRepository, EmployeeRepository employeeRepository, PointCalculateService service) {
-        this.pointRecordRepository = pointRecordRepository;
-        this.employeeRepository = employeeRepository;
-        this.service = service;
-    }
 
     @Transactional
     public PointRecordDTO savePointRecord(PointRecordDTO data) {

@@ -2,6 +2,7 @@ package com.ponto.eletronico.controller;
 
 import com.ponto.eletronico.dto.PointRecordDTO;
 import com.ponto.eletronico.service.PointRecordService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -10,13 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("point")
+@RequiredArgsConstructor
 public class PointRecordController {
 
     private final PointRecordService pointRecordService;
-
-    public PointRecordController(PointRecordService pointRecordService) {
-        this.pointRecordService = pointRecordService;
-    }
 
     @PreAuthorize("hasHole('EMPLOYEE')")
     @PostMapping
