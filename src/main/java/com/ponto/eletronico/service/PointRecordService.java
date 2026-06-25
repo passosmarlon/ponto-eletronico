@@ -28,12 +28,10 @@ public class PointRecordService {
         Employee employee = employeeRepository.findById(data.employeeId())
                 .orElseThrow(()-> new RuntimeException("Employee não encontrado"));
 
-        PointRecord entity = PointRecordMapper.toEntity(data, employee);
+        PointRecord entity = PointRecordMapper.toEntity(data, employee); // já traz lat/lng do dto
 
         entity.setStartTime(LocalTime.now());
         entity.setDate(LocalDate.now());
-
-        PointRecordMapper.toDTO(entity);
 
         PointRecord saved = pointRecordRepository.save(entity);
 
@@ -107,6 +105,13 @@ public class PointRecordService {
                 .orElseThrow(() -> new RuntimeException("PointRecord not found"));
 
         pointRecordRepository.deleteById(pointRecord.getId());
+    }
+
+    public List<PointRecordDTO> getPointRecordsByEmployee(Long employeeId) {
+        return pointRecordRepository.findByEmployeeId_OrderByDateDesc(employeeId)
+                .stream()
+                .map(PointRecordMapper::toDTO)
+                .toList();
     }
 
 }

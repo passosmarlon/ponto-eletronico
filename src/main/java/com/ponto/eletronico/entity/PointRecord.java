@@ -24,6 +24,8 @@ public class PointRecord {
     private LocalTime startTime;
     private LocalTime endTime;
     private LocalDate date;
+    private Double latitude;
+    private Double longitude;
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;

@@ -17,7 +17,9 @@ public class PointRecordMapper {
                 entity.getStartTime(),
                 entity.getEndTime(),
                 entity.getDate(),
-                employeeId
+                employeeId,
+                entity.getLatitude(),
+                entity.getLongitude()
         );
     }
 
@@ -32,8 +34,8 @@ public class PointRecordMapper {
         entity.setStartTime(dto.startTime());
         entity.setEndTime(dto.endTime());
         entity.setDate(dto.date());
+        entity.setLatitude(dto.latitude());
+        entity.setLongitude(dto.longitude());
         return entity;
     }
 }
-
-

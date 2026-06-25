@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -24,27 +25,30 @@ public class PaymentService {
 
     @Transactional
     public PaymentDTO salaryPayment(PaymentDTO data) {
-        Payment payment = new Payment();
         Employee employee = employeeRepository.findById(data.employeeId())
                 .orElseThrow(() -> new RuntimeException("Employee not found"));
 
-        if (employee.getHoursWorked() == null) {
-            return null;
+        if (employee.getHoursWorked() == null || employee.getHoursWorked().isZero()) {
+            throw new RuntimeException("Employee has no hours to pay");
         }
-        Long hours = employee.getHoursWorked().toMinutes();
-        hours /= 60;
+
+        BigDecimal totalMinutes = BigDecimal.valueOf(employee.getHoursWorked().toMinutes());
+        BigDecimal hoursDecimal = totalMinutes.divide(BigDecimal.valueOf(60), 2, RoundingMode.HALF_UP);
+
         BigDecimal salary = employee.getSalary();
+        BigDecimal total = salary.multiply(hoursDecimal);
 
-        BigDecimal total = salary.multiply(BigDecimal.valueOf(hours));
-
+        Payment payment = new Payment();
         payment.setTotal(total);
         payment.setStatus(Status.PAID);
         payment.setDate(LocalDateTime.now());
         payment.setEmployee(employee);
 
         var saved = paymentRepository.save(payment);
-        employee.setHoursWorked(Duration.ZERO);
-        return PaymentMapper.toDTO(saved);
 
+        employee.setHoursWorked(Duration.ZERO);
+        employeeRepository.save(employee);
+
+        return PaymentMapper.toDTO(saved);
     }
 }

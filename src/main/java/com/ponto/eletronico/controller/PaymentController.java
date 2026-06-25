@@ -17,7 +17,7 @@ public class PaymentController {
 
     private final PaymentService paymentService;
 
-    @PreAuthorize("hasHole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<PaymentDTO> payment (@RequestBody PaymentDTO data) {
         var get = paymentService.salaryPayment(data);
